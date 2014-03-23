@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LightningDB">
+      <HintPath>..\packages\LightningDB.0.8.1.52127\lib\net40\LightningDB.dll</HintPath>
+    </Reference>
     <Reference Include="nohros">
       <HintPath>..\packages\must.common.1.10.0.0\lib\net40\nohros.dll</HintPath>
     </Reference>
@@ -54,6 +57,14 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="lmdb32.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="lmdb64.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
