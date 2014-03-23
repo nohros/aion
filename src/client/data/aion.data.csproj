@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{07D7AE5E-CEEB-4A09-8EAE-94752BA3DDB1}</ProjectGuid>
+    <ProjectGuid>{1B952F53-2E50-49DA-BD26-7E2D5D04778F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>properties</AppDesignerFolder>
-    <RootNamespace>Nohros.Aion</RootNamespace>
-    <AssemblyName>nohros.aion.client</AssemblyName>
+    <RootNamespace>Nohros.Aion.Client.Data</RootNamespace>
+    <AssemblyName>nohros.aion.client.data</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -32,34 +32,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nohros">
-      <HintPath>..\..\packages\must.common.1.10.0.0\lib\net40\nohros.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AionLogger.cs" />
-    <Compile Include="App.cs" />
-    <Compile Include="IdleTimeExtensions.cs" />
-    <Compile Include="IdleTimeMonitor.cs" />
-    <Compile Include="EndpointConfig.cs" />
-    <Compile Include="PInvoke.cs" />
+    <Compile Include="IQueueIdleTime.cs" />
+    <Compile Include="IdleTimeDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Settings.cs" />
-    <Compile Include="Strings.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\data\aion.data.csproj">
-      <Project>{1B952F53-2E50-49DA-BD26-7E2D5D04778F}</Project>
-      <Name>aion.data</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -69,8 +49,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <PropertyGroup>
-    <StartAction>Program</StartAction>
-    <StartProgram>$(ProjectDir)$(OutputPath)NServiceBus.Host.exe</StartProgram>
-  </PropertyGroup>
 </Project>

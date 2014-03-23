@@ -3,6 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "aion.service", "client\service\aion.service.csproj", "{07D7AE5E-CEEB-4A09-8EAE-94752BA3DDB1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "(client)", "(client)", "{B6196128-0E13-4A30-9090-F83981556731}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "aion.data", "client\data\aion.data.csproj", "{1B952F53-2E50-49DA-BD26-7E2D5D04778F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "aion.sqlce", "client\sqlce\aion.sqlce.csproj", "{E54968C1-CAD7-4544-B525-8A5662FA1793}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,8 +19,21 @@ Global
 		{07D7AE5E-CEEB-4A09-8EAE-94752BA3DDB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{07D7AE5E-CEEB-4A09-8EAE-94752BA3DDB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{07D7AE5E-CEEB-4A09-8EAE-94752BA3DDB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B952F53-2E50-49DA-BD26-7E2D5D04778F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B952F53-2E50-49DA-BD26-7E2D5D04778F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B952F53-2E50-49DA-BD26-7E2D5D04778F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B952F53-2E50-49DA-BD26-7E2D5D04778F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E54968C1-CAD7-4544-B525-8A5662FA1793}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E54968C1-CAD7-4544-B525-8A5662FA1793}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E54968C1-CAD7-4544-B525-8A5662FA1793}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E54968C1-CAD7-4544-B525-8A5662FA1793}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{07D7AE5E-CEEB-4A09-8EAE-94752BA3DDB1} = {B6196128-0E13-4A30-9090-F83981556731}
+		{1B952F53-2E50-49DA-BD26-7E2D5D04778F} = {B6196128-0E13-4A30-9090-F83981556731}
+		{E54968C1-CAD7-4544-B525-8A5662FA1793} = {B6196128-0E13-4A30-9090-F83981556731}
 	EndGlobalSection
 EndGlobal
