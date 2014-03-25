@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
+using Nohros.Extensions.Time;
 
 namespace Nohros.Aion
 {
@@ -36,7 +34,11 @@ namespace Nohros.Aion
       if (GetLastInputInfo(ref last_input_info)) {
         last_input_tick = last_input_info.dwTime;
       }
-      return new IdleTimeInfo(DateTime.Now, last_input_tick, env_ticks);
+      return new IdleTimeInfo {
+        Timestamp = DateTime.Now.ToUnixEpoch(),
+        LastInputTime = last_input_tick,
+        MachineUpTime = env_ticks
+      };
     }
   }
 }

@@ -6,7 +6,7 @@ using Nohros.Configuration.Builders;
 
 namespace Nohros.Aion
 {
-  public class Settings : Configuration
+  public class Settings : Configuration.Configuration
   {
     public Settings(Builder builder) : base(builder) {
     }

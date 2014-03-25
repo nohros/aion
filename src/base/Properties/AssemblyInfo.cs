@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("nohros.aion.sqlce")]
-[assembly: AssemblyDescription("nohros.aion.sqlce")]
+[assembly: AssemblyTitle("nohros.aion")]
+[assembly: AssemblyDescription("nohros.aion")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Nohros Inc")]
 [assembly: AssemblyProduct("Nohros Aion")]
-[assembly: AssemblyCopyright("Copyright © 2014 by Nohros Inc")]
+[assembly: AssemblyCopyright("Copyright © Nohros Inc 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("6629f9f5-62a5-4a13-8509-8061821cf7ab")]
+[assembly: Guid("897c6022-ee40-481d-b23b-5d5d67c3a37d")]
 
 // Version information for an assembly consists of the following four values:
 //

@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{E54968C1-CAD7-4544-B525-8A5662FA1793}</ProjectGuid>
+    <ProjectGuid>{EC27D7BB-2679-458A-9402-769B79BF3480}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>properties</AppDesignerFolder>
-    <RootNamespace>Nohros.Aion.SqlCe</RootNamespace>
-    <AssemblyName>nohros.aion.sqlce</AssemblyName>
+    <RootNamespace>Nohros.Aion</RootNamespace>
+    <AssemblyName>nohros.aion</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -33,54 +33,24 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="nohros, Version=1.10.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\must.common.1.10.0.0\lib\net40\nohros.dll</HintPath>
-    </Reference>
-    <Reference Include="nohros.data.sqlce">
-      <HintPath>..\..\packages\must.data.sqlce.0.0.9.0\lib\net20\nohros.data.sqlce.dll</HintPath>
+      <HintPath>..\packages\must.common.1.10.0.0\lib\net20\nohros.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\..\packages\Microsoft.SqlServer.Compact.4.0.8876.1\lib\net40\System.Data.SqlServerCe.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddIdleTimeQuery.cs" />
-    <Compile Include="CreateIdleTimeTable.cs" />
-    <Compile Include="IdleTimeAtTimeQuery.cs" />
-    <Compile Include="Mappers.cs" />
-    <Compile Include="OldestIdleTimeQuery.cs" />
+    <Compile Include="AionLogger.cs" />
+    <Compile Include="IdleTimeInfo.cs" />
+    <Compile Include="IIdleTimeQueue.cs" />
+    <Compile Include="IProcessIdleTime.cs" />
+    <Compile Include="ISendIdleTimeToServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RemoveIdleTimeAtTimeQuery.cs" />
-    <Compile Include="SqlCeDao.cs" />
-    <Compile Include="SqlCeDaoFactory.cs" />
-    <Compile Include="SqlCeIdleTimeQueue.cs" />
-    <Compile Include="SqlCeIdleTimeQueueFactory.cs" />
-    <Compile Include="TableExistsQuery.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\base\aion.base.csproj">
-      <Project>{EC27D7BB-2679-458A-9402-769B79BF3480}</Project>
-      <Name>aion.base</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\data\aion.data.csproj">
-      <Project>{1B952F53-2E50-49DA-BD26-7E2D5D04778F}</Project>
-      <Name>aion.data</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>
-    if not exist "$(TargetDir)x86" md "$(TargetDir)x86"
-    xcopy /s /y "$(SolutionDir)packages\Microsoft.SqlServer.Compact.4.0.8876.1\NativeBinaries\x86\*.*" "$(TargetDir)x86"
-    if not exist "$(TargetDir)amd64" md "$(TargetDir)amd64"
-    xcopy /s /y "$(SolutionDir)packages\Microsoft.SqlServer.Compact.4.0.8876.1\NativeBinaries\amd64\*.*" "$(TargetDir)amd64"</PostBuildEvent>
-  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

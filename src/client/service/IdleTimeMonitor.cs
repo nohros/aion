@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using Nohros.Concurrent;
 
 namespace Nohros.Aion
@@ -9,16 +10,21 @@ namespace Nohros.Aion
   public class IdleTimeMonitor
   {
     long idle_threshold_;
-    NonReentrantSchedule scheduler_;
     IdleTimeInfo last_idle_time_;
+    readonly IProcessIdleTime idle_time_processor_;
+    Thread monitor_thread_;
+    readonly ManualResetEvent sync_;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="IdleTimeMonitor"/> class,
     /// using the default check interval and idle threshold.
     /// </summary>
-    public IdleTimeMonitor() {
+    public IdleTimeMonitor(IProcessIdleTime idle_time_processor) {
       CheckIntervalInSeconds = 60;
       idle_threshold_ = 60;
+      last_idle_time_ = Environment.GetSystemIdleTime();
+      idle_time_processor_ = idle_time_processor;
+      sync_ = new ManualResetEvent(false);
     }
 
     /// <summary>
@@ -26,19 +32,33 @@ namespace Nohros.Aion
     /// </summary>
     /// <remarks></remarks>
     public void Start() {
-      scheduler_ = NonReentrantSchedule
-        .Every(TimeSpan.FromSeconds(CheckIntervalInSeconds));
-      scheduler_
-        .Runnable(CheckForIdleTime);
+      monitor_thread_ = new BackgroundThreadFactory()
+        .CreateThread(Monitor);
+      monitor_thread_.Start();
     }
 
-    void CheckForIdleTime() {
-      IdleTimeInfo idle_time = Environment.GetSystemIdleTime();
+    void Monitor() {
+      long delay;
+      do {
+
+        IdleTimeInfo idle_time = Environment.GetSystemIdleTime();
+        ProcessIdleTime(idle_time);
+
+        delay = CheckIntervalInSeconds - idle_time.InSeconds();
+        if (delay < 0) {
+          delay = CheckIntervalInSeconds;
+        }
+      } while (!sync_.WaitOne(TimeSpan.FromSeconds(delay)));
+    }
+
+    void ProcessIdleTime(IdleTimeInfo idle_time) {
       if (idle_time.LastInputTime <= last_idle_time_.LastInputTime) {
         last_idle_time_.MachineUpTime = idle_time.MachineUpTime;
       }
 
-      if (idle_time.Seconds > IdleThresholdInSeconds) {
+      if (idle_time.InSeconds() > IdleThresholdInSeconds) {
+        idle_time_processor_.Process(idle_time);
+        last_idle_time_ = idle_time;
       }
     }
 
@@ -50,8 +70,9 @@ namespace Nohros.Aion
     /// monitor to finish.
     /// </remarks>
     public void Stop() {
-      if (scheduler_ != null) {
-        scheduler_.Stop().WaitOne();
+      if (monitor_thread_ != null) {
+        sync_.Set();
+        monitor_thread_.Join();
       }
     }
 
